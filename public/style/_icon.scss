@@ -1,0 +1,19 @@
+// icon class
+
+$base_url: "/public/img/icon";
+
+$besence_icons: (
+    "alert",
+    "arrow_down_grey",
+    "attending",
+    "bank",
+    "cancel",
+    "celebrate",
+    "close"
+);
+
+@each $icon in $besence_icons {
+    .be-icon-#{$icon} {
+        background: url('#{$base_url}/icon_#{$icon}.svg') no-repeat center;
+    }
+}

@@ -1,0 +1,16 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@headerFont: 'Karla', sans-serif, Arial;
+@pageFont: 'Karla', sans-serif, Arial
+
+@importGoogleFonts: true;
+@googleFontName: 'Karla';
+@googleFontSizes   : '400,700,400italic,700italic';
+@googleFontFamily  : '@{googleFontName}:@{googleFontSizes}';
+
+@fontSmoothing: antialiased;
+
+@emSize: 16px;
+@fontSize: 16px;

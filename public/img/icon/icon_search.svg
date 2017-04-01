@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <ellipse id="a" cx="11.5" cy="11.5" rx="7.5" ry="7.5"/>
+    <mask id="b" width="15" height="15" x="0" y="0" fill="white">
+      <use xlink:href="#a"/>
+    </mask>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <use stroke="#1D1D1D" stroke-width="4" mask="url(#b)" transform="matrix(-1 0 0 1 23 0)" xlink:href="#a"/>
+    <path stroke="#1D1D1D" stroke-width="2" d="M19.5355339,16 L16,19.5355339" transform="matrix(-1 0 0 1 35.536 0)"/>
+    <rect width="25" height="25"/>
+  </g>
+</svg>
