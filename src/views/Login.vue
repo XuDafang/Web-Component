@@ -15,26 +15,10 @@
                         </div>
                         <div class="be-divider">
                         </div>
-                        <div class="be-label">
-                            <i class="be-icon-email small icon"></i>
-                            <div class="be-text-bold">
-                                Email address
-                            </div>
-                        </div>
-                        <div class="be-input-container">
-                            <input class="be-input" type="text" placeholder="johndoe@email.com" maxlength="100" v-model="user.email"/>
-                        </div>
+                        <be-input :source="source.email" v-model="user.email"></be-input>
                         <div class="be-divider">
                         </div>
-                        <div class="be-label">
-                            <i class="be-icon-password small icon"></i>
-                            <div class="be-text-bold">
-                                Email address
-                            </div>
-                        </div>
-                        <div class="be-input-container">
-                            <input class="be-input" type="password" placeholder="Your 5-12 character password" maxlength="30" v-model="user.password"/>
-                        </div>
+                        <be-input :source="source.password" v-model="user.password"></be-input>
                         <div class="be-divider">
                         </div>
                         <div class="be-checkbox-container">
@@ -155,6 +139,8 @@ import util from 'util'
 import { mapActions } from 'vuex'
 import uuid from 'uuid'
 
+import Binput from './components/Binput'
+
 // for test
 const userInfo = {
     "user": {
@@ -165,8 +151,25 @@ const userInfo = {
 }
 
 module.exports = {
+    components: {
+        'be-input': Binput
+    },
     data: function(){
         return {
+            "source": {
+                "email": {
+                    input: '',
+                    holderName: 'johndoe@email.com',
+                    labelName: 'Email address',
+                    icon: 'be-icon-email'
+                },
+                "password": {
+                    input: '',
+                    holderName: 'Your Your 5-12 character password',
+                    labelName: 'Password',
+                    icon: 'be-icon-password'
+                }
+            },
             "user": {
                 "email": '',
                 "password": '',
