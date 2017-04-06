@@ -11,7 +11,9 @@ $besence_icons: (
     "celebrate",
     "close",
     "email",
-    "password"
+    "password",
+    "profile",
+    "organiser"
 );
 
 @each $icon in $besence_icons {

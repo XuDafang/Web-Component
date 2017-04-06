@@ -17,9 +17,20 @@
     </div>
 </template>
 
-
-
 <script>
+/* 
+    The component is used as follows
+    <be-input :source="source.email" v-model="user.email"></be-input>
+    @params source 
+        source: {
+            icon, // icon class eg. be-icon-password
+            labelName,
+            holderName,
+            input
+        }
+    it should make assginment in parent's data
+*/
+
 module.exports = {
     props: {
         source: { 

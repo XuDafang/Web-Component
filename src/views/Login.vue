@@ -1,6 +1,6 @@
 <template>
-    <div class="login-container login-bg">
-        <div class="ui container grid login-content">
+    <div class="be-page-container be-mainpage-bg">
+        <div class="ui container grid height-100">
             <div class="two column row">
                 <div class="ten wide column login-small-align-center">
                     <div class="login-text">Welcome to <span class="be-theme-color">BeScene.</span></div>
@@ -26,7 +26,7 @@
                             <label class="be-checkbox-lable" for="login-checkbox">Remember Me</label>
                             <a class="be-text-dim be-right" href="#">Forget password?</a>
                         </div>
-                        <div class="login-button-container">
+                        <div class="be-button-container">
                             <button class="ui button fluid be-theme-bg-color be-text-white">
                                 Login
                             </button>
@@ -55,16 +55,6 @@
     position: absolute;
     bottom: 0;
 	background-color: rgba(242,242,242,.5) !important;
-}
-
-.login-container {
-    position: relative;
-    overflow: hidden;
-    min-height: 100%;
-}
-
-.login-content {
-    height: 100%;
 }
 
 .login-text {
@@ -96,15 +86,6 @@
     padding-top: calc((100vh - 528px)/2);
 }
 
-.login-page {
-    width: 400px;
-}
-
-.login-bg {
-    background: url('/public/img/login_bg.png') no-repeat center center fixed;
-    background-size: cover;
-}
-
 .login-form-container {
     width: 400px;
 	height: 520px;
@@ -127,9 +108,6 @@
     align-items: center;
 }
 
-.login-button-container {
-    margin: 1em;
-}
 </style>
 
 
