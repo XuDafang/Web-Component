@@ -1,0 +1,102 @@
+$be-checkbox-size: 20px !default;
+$be-border-color: #000000 !default;
+$be-main-color: #ff7553 !default;
+$be-disabled-color: lighten($be-border-color, 14%) !default;
+$be-disabled-checked-color: lighten($be-main-color, 30%) !default;
+
+
+@keyframes hover-color {
+  from {
+    border-color: $be-border-color;
+  }
+
+  to {
+    border-color: $be-main-color;
+  }
+}
+
+.be-checkbox {
+  position: absolute;
+  display: none;
+}
+
+.be-checkbox + label {
+  position: relative;
+  display: block;
+  padding-left: 30px;
+  cursor: pointer;
+  vertical-align: middle;
+
+  &:hover {
+    &:before {
+      animation-duration: 0.4s;
+      animation-fill-mode: both;
+      animation-name: hover-color;
+    }
+  }
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: $be-checkbox-size;
+    height: $be-checkbox-size;
+    content: '';
+    border: 1px solid $be-border-color;
+  }
+  &:after {
+    position: absolute;
+    display: none;
+    content: '';
+  }
+}
+
+.be-checkbox + label {
+  &:before {
+    border-radius: 0px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #000;
+  }
+  &:after {
+    top: 2px;
+    left: 7px;
+    box-sizing: border-box;
+    width: 6px;
+    height: 12px;
+    transform: rotate(45deg);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+
+    border-top: 0;
+    border-left: 0;
+  }
+}
+
+.be-checkbox:checked + label {
+  &:before {
+    animation-name: none;
+  }
+  &:after {
+    display: block;
+  }
+}
+
+.be-checkbox:checked + label {
+  &:before {
+    border: $be-main-color;
+    background: $be-main-color;
+  }
+}
+
+.be-checkbox:checked[disabled] + label {
+  &:before {
+    border: $be-disabled-checked-color;
+    background: $be-disabled-checked-color;
+  }
+}
+
+.be-checkbox-lable {
+    font-size: 1em;
+}

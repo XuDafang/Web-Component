@@ -40,9 +40,9 @@
   font-family: 'Karla', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   padding: 0.58035714em 0.875em;
   background: #FFFFFF;
-  border: 1px solid rgba(34, 36, 38, 0.15);
+  border: 0 solid rgba(34, 36, 38, 0.15);
   color: rgba(0, 0, 0, 0.87);
-  border-radius: 0.25rem;
+  border-radius: 0;
   -webkit-transition: box-shadow 0.1s ease, border-color 0.1s ease;
   transition: box-shadow 0.1s ease, border-color 0.1s ease;
   box-shadow: none;
@@ -248,7 +248,7 @@
   height: 100%;
   width: 2.475em;
   opacity: 0.5;
-  border-radius: 0em 0.25rem 0.25rem 0em;
+  border-radius: 0em 0 0 0em;
   -webkit-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
 }
@@ -278,8 +278,8 @@
 /* Left Icon Input */
 .ui[class*="left icon"].input > i.icon {
   right: auto;
-  left: 1px;
-  border-radius: 0.25rem 0em 0em 0.25rem;
+  left: 0;
+  border-radius: 0 0em 0em 0;
 }
 .ui[class*="left icon"].input > i.circular.icon {
   right: auto;
@@ -343,10 +343,10 @@
 
 /* Corner Label */
 .ui.labeled.input .corner.label {
-  top: 1px;
-  right: 1px;
+  top: 0;
+  right: 0;
   font-size: 0.5625em;
-  border-radius: 0em 0.25rem 0em 0em;
+  border-radius: 0em 0 0em 0em;
 }
 
 /* Spacing with corner label */
@@ -373,12 +373,12 @@
 
 /* Corner Label Position  */
 .ui.input > .ui.corner.label {
-  top: 1px;
-  right: 1px;
+  top: 0;
+  right: 0;
 }
 .ui.input > .ui.left.corner.label {
   right: auto;
-  left: 1px;
+  left: 0;
 }
 
 /*--------------------
@@ -418,7 +418,7 @@
 .ui.action.input:not([class*="left action"]) > .dropdown:last-child,
 .ui.action.input:not([class*="left action"]) > .button:last-child,
 .ui.action.input:not([class*="left action"]) > .buttons:last-child > .button {
-  border-radius: 0px 0.25rem 0.25rem 0px;
+  border-radius: 0px 0 0 0px;
 }
 
 /* Input Focus */
@@ -440,7 +440,7 @@
 .ui[class*="left action"].input > .dropdown:first-child,
 .ui[class*="left action"].input > .button:first-child,
 .ui[class*="left action"].input > .buttons:first-child > .button {
-  border-radius: 0.25rem 0px 0px 0.25rem;
+  border-radius: 0 0px 0px 0;
 }
 
 /* Input Focus */

@@ -1,13 +1,22 @@
 <template>
-    <div id="wrapper">
+    <div class="wrapper">
         <Bheader></Bheader>
+        <router-view></router-view>
         <p>
             <router-link to="/login">Login</router-link>
             <router-link to="/logout">Logout</router-link>
         </p>
-        <router-view></router-view>
     </div>
 </template>
+
+<style lang="sass" scoped>
+.wrapper {
+    height: 100%;
+    overflow-x: hidden;
+    padding: 0em! important;
+}
+</style>
+
 
 <script>
 

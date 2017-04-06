@@ -9,11 +9,14 @@ $besence_icons: (
     "bank",
     "cancel",
     "celebrate",
-    "close"
+    "close",
+    "email",
+    "password"
 );
 
 @each $icon in $besence_icons {
     .be-icon-#{$icon} {
         background: url('#{$base_url}/icon_#{$icon}.svg') no-repeat center;
+        z-index: 100;
     }
 }

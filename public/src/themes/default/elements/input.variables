@@ -17,8 +17,10 @@
 
 @textAlign: left;
 @background: @inputBackground;
-@borderWidth: 1px;
+@borderWidth: 0;
+
 @border: @borderWidth solid @borderColor;
+
 @boxShadow: none;
 
 @borderRadius: @defaultBorderRadius;
