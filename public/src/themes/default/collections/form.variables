@@ -53,7 +53,9 @@
 
 /* Text Area */
 @textAreaPadding: @inputVerticalPadding @inputHorizontalPadding;
-@textAreaHeight: 12em;
+//@textAreaHeight: 12em;
+@textAreaHeight: 300px;
+@textAreaWidth: 700px;
 @textAreaResize: vertical;
 @textAreaLineHeight: 1.2857;
 @textAreaMinHeight: 8em;

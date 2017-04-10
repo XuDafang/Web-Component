@@ -19,7 +19,8 @@
 @opacity: 1;
 @width: @iconWidth;
 @height: 1em;
-@distanceFromText: 0.25rem;
+//@distanceFromText: 0.25rem;
+@distanceFromText: 0.75rem;
 
 
 /* Variations */

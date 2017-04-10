@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_phone@1.5x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Login" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.1.0-signup" transform="translate(-852.000000, -572.000000)">
+            <g id="loginform" transform="translate(835.000000, 188.000000)">
+                <g id="Group-5" transform="translate(16.000000, 381.000000)">
+                    <g id="icon_phone" transform="translate(0.000000, 2.000000)">
+                        <rect id="Rectangle" x="0" y="0" width="16" height="16"></rect>
+                        <path d="M14.72,10.88 L11.3066667,9.6 L10.0266667,10.88 C8.33672533,9.75342933 6.88657067,8.30327467 5.76,6.61333333 L7.04,5.33333333 L5.76,1.92 L5.521408,1.92 C4.58154667,1.92 3.68008533,2.29341867 3.01533867,2.95799467 L3.01533867,2.95799467 C2.31406933,3.659264 1.92,4.61056 1.92,5.602304 L1.92,5.602304 C1.92,6.26449067 2.09578667,6.91473067 2.42944,7.48663467 C4.05333333,10.2703787 6.36962133,12.5866667 9.15336533,14.21056 C9.72526933,14.5442133 10.3755093,14.72 11.037696,14.72 C12.02944,14.72 12.980736,14.3259307 13.6820053,13.6246613 L13.6820053,13.6246613 C14.3465813,12.9600853 14.72,12.058624 14.72,11.118592 L14.72,10.88 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -13,7 +13,12 @@ $besence_icons: (
     "email",
     "password",
     "profile",
-    "organiser"
+    "organiser",
+    "phone",
+    "event-image",
+    "facebook-black",
+    "web",
+    "compose"
 );
 
 @each $icon in $besence_icons {

@@ -6,7 +6,16 @@
                 {{ source.labelName }}
             </div>
         </div>
-        <div class="be-input-container">
+        <div v-if="isTextarea" class="be-input-container">
+            <textarea class="input-textarea" 
+                      :placeholder="source.holderName" 
+                      wrap="physical"
+                      :value="source.input"
+                      @input="updateValue($event.target.value)"
+                      >
+            </textarea>
+        </div>
+        <div v-else class="be-input-container">
             <input class="be-input" type="text" maxlength="100"
                 ref="input" 
                 :placeholder="source.holderName"  
@@ -16,6 +25,12 @@
         </div>
     </div>
 </template>
+<style lang="sass" scoped>
+.input-textarea {
+    border: solid 1px #e2e2e2 !important;
+    width: 700px;
+}
+</style>
 
 <script>
 /* 
@@ -23,12 +38,13 @@
     <be-input :source="source.email" v-model="user.email"></be-input>
     @params source 
         source: {
-            icon, // icon class eg. be-icon-password
-            labelName,
-            holderName,
-            input
+            icon, // icon class.    eg. be-icon-password
+            labelName, // label Name
+            holderName, // placeholder text
+            input, // now is useless
+            isTextarea // 
         }
-    it should make assginment in parent's data
+    it should be used as child of <from> with semantic ui
 */
 
 module.exports = {
@@ -52,6 +68,11 @@ module.exports = {
                 default: 'default-input',
                 required: true
             }
+        },
+        isTextarea: {
+            type: Boolean,
+            default: false,
+            required: false
         }
     },
     methods: {

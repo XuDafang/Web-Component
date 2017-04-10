@@ -143,7 +143,7 @@ module.exports = {
                     input: '',
                     holderName: '9123 4567',
                     labelName: 'Contact Number',
-                    icon: 'be-icon-profile'
+                    icon: 'be-icon-phone'
                 }
             },
             "user": {
