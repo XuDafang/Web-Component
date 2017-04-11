@@ -121,6 +121,23 @@ body {
     background-size: cover;
 }
 
+// .be-mainpage-bg {
+//     min-height: 100%;
+//     min-width: 1024px;
+//     width: 100%;
+//     height: auto;
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+// }
+
+// @media screen and (max-width: 1024px){
+//     .be-mainpage-bg {
+//         left: 50%;
+//         margin-left: -512px;
+//     }
+// }
+
 .be-label {
     margin-top: 1em;
     margin-left: 1em;
@@ -195,6 +212,10 @@ body {
     margin-bottom: 1em;
 }
 
+.margin-bottom-5em {
+    margin-bottom: 5em !important;
+}
+
 .margin-top-1em {
     margin-top: 1em;
 }
@@ -205,6 +226,14 @@ body {
 
 .margin-left-3em {
     margin-left: 3em;
+}
+
+.margin-left-auto {
+    margin-left: auto !important;
+}
+
+.margin-right-auto {
+    margin-right: auto !important;
 }
 
 .padding-0 {

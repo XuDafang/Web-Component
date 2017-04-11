@@ -96,7 +96,7 @@
         </div>
         <div class="be-divider">
         </div>
-        <div class="ui form">
+        <div class="ui form margin-bottom-5em">
             <div class="be-column-container">
                 <be-input :source="source.organiser" v-model="user.organiser"></be-input>
             </div>
@@ -116,6 +116,7 @@
                 <be-input :source="source.facebook" v-model="user.facebook"></be-input>
             </div>
         </div>
+        <be-footer></be-footer>
     </div>
 </template>
 
@@ -175,6 +176,7 @@ button.profile-button:hover {
 
 import myUpload from 'vue-image-crop-upload/upload-2.vue'
 import Binput from './components/Binput.vue'
+import Bfooter from './components/Bfooter.vue'
 /* 
     reference https://github.com/dai-siki/vue-image-crop-upload
 */
@@ -269,7 +271,8 @@ module.exports = {
     },
     components: {
         'my-upload': myUpload,
-        'be-input': Binput
+        'be-input': Binput,
+        'be-footer': Bfooter
     }
 }
 </script>

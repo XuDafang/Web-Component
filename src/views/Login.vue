@@ -1,6 +1,6 @@
 <template>
     <div class="be-page-container be-mainpage-bg">
-        <div class="ui container grid height-100">
+        <div class="ui container grid">
             <div class="two column row">
                 <div class="ten wide column login-small-align-center">
                     <div class="login-text">Welcome to <span class="be-theme-color">BeScene.</span></div>
@@ -42,6 +42,9 @@
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="ui container">
+            <be-footer :isFixed="true" :isWhite="true"></be-footer> 
         </div>
     </div>
 </template>
@@ -118,6 +121,7 @@ import { mapActions } from 'vuex'
 import uuid from 'uuid'
 
 import Binput from './components/Binput'
+import Bfooter from './components/Bfooter'
 
 // for test
 const userInfo = {
@@ -130,7 +134,8 @@ const userInfo = {
 
 module.exports = {
     components: {
-        'be-input': Binput
+        'be-input': Binput,
+        'be-footer': Bfooter
     },
     data: function(){
         return {
@@ -153,7 +158,6 @@ module.exports = {
                 "password": '',
                 "client": util.getBrowserInfo() + uuid.v1()
             }
-            
         }
     },
     methods: {
@@ -168,7 +172,7 @@ module.exports = {
                 // set route and store user data to localstage
                 if(res.user){
                     let user = res.user;
-                    util.storeWithExpiration.set('user', user, 60000); // expiration time = 10 min
+                    util.storeWithExpiration.set('user', user, 600000); // expiration time = 10 min
                     this.setUserInfo(user);
                 }
             }).catch(error => {

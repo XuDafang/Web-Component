@@ -1,5 +1,5 @@
 <template>
-    <div v-if="isLogin">
+    <div v-if="user.userInfo.id">
         <div class="header-height ui attached stackable menu inverted">
             <div class="ui container">
                 <a class="item">
@@ -28,8 +28,8 @@
         </div>
     </div>
 
-    <div v-else>
-        <div class="header-height ui attached stackable menu inverted">
+    <div v-else class="header-fixed">
+        <div class="" class="header-height ui attached stackable menu inverted">
             <div class="ui container">
                 <a class="item">
                     <img class="image ui small" src="/public/img/logo.png"/>
@@ -59,9 +59,19 @@
     margin: 0 !important;
 }
 
+.header-fixed {
+    position: fixed;
+    z-index: 101;
+    left: 0;
+    right: 0;
+}
+
 </style>
 
 <script>
+
+import { mapState, mapGetters, mapActions } from 'vuex'
+
 module.exports = {
     props: {
         isLogin: {
@@ -76,8 +86,21 @@ module.exports = {
     },
     data(){
         return {
-            ok: true
+            ok: true,        
         }
+    },
+    methods: {
+        ...mapActions([
+            'loadUserInfo'
+        ])
+    },
+    computed: {
+        ...mapState([
+            'user'
+        ])
+    },
+    created(){
+        this.loadUserInfo();
     }
 }
 </script>

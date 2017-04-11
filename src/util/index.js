@@ -31,7 +31,7 @@ var storeWithExpiration = {
     },
     get: function(key){
         var info = store.get(key);
-        if(!info) { return null }
+        if(!info) { return {} }
         if(new Date().getTime() - info.time > info.exp){
             return null;
         }

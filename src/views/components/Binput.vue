@@ -28,7 +28,7 @@
 <style lang="sass" scoped>
 .input-textarea {
     border: solid 1px #e2e2e2 !important;
-    width: 700px;
+    width: 700px !important;
 }
 </style>
 

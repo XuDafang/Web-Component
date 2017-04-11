@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './app.vue'
 import router from './router'
 import store from './store'
+import 'babel-polyfill'
 import '../public/style/style.scss'
 
 

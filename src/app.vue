@@ -2,7 +2,7 @@
     <div class="wrapper">
         <Bheader></Bheader>
         <router-view></router-view>
-        <p>
+        <p class="test-link">
             <router-link to="/login">Login</router-link>
             <router-link to="/logout">Logout</router-link>
             <router-link to="/signup">Signup</router-link>
@@ -17,12 +17,18 @@
     overflow-x: hidden;
     padding: 0em! important;
 }
-</style>
 
+.test-link {
+    position: fixed;
+    bottom: 0;
+    z-index: 10000;
+}
+</style>
 
 <script>
 
 import Bheader from './views/components/Bheader.vue'
+import { mapActions, mapState } from 'vuex'
 
 module.exports = {
     components: {
