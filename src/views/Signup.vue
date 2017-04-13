@@ -97,6 +97,7 @@
 }
 
 .signup-form-container {
+    z-index: 100;
     width: 400px;
 	height: 720px;
 	background-color: #ffffff;

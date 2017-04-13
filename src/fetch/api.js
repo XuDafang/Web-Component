@@ -1,7 +1,11 @@
 import axios from 'axios'
 import qs from 'qs'
 
-const Interface = '/api/v1'
+let Interface = '/api/v1'
+
+if(!DEVELOPMENT){
+    Interface = 'http://bescene.staging.fooyo.sg/api/v1'
+}
 
 // axios config that will be applied to every request
 axios.defaults.baseURL = Interface // interface address

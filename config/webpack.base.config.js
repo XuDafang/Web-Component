@@ -13,6 +13,7 @@ const IMG_PATH = path.join(PUBLIC_PATH, 'img');
 const STYLE_PATH = path.resolve(PUBLIC_PATH, 'style');
 
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HTMLWebpackPlugin = require("html-webpack-plugin");
 
 console.log(STYLE_PATH);
 
@@ -27,8 +28,21 @@ var plugins = isdev ? [
     new webpack.HotModuleReplacementPlugin(),
     new ExtractTextPlugin("style.css")
 ] : [
+    new HTMLWebpackPlugin({
+        template: path.resolve(ROOT_PATH, 'index-template.html')
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+    }),
     new ExtractTextPlugin("style-[contenthash:10].css")
 ]
+
+// define development and production in application
+plugins.push(
+    new webpack.DefinePlugin({
+        DEVELOPMENT: JSON.stringify(isdev),
+        PRODUCTION: JSON.stringify(!isdev)
+    })
+)
 
 module.exports = {
     devtool: 'source-map',  // only for development
@@ -48,8 +62,8 @@ module.exports = {
     entry: entry,
     output: {
         path: BUILD_PATH,
-        publicPath: "http://localhost:8080/build",  // output to CDN
-        filename: 'bundle.js'
+        publicPath: isdev ? '/build/' : '/build/',  // output to CDN
+        filename: isdev ? 'bundle.js' : 'bundle.[hash:12].min.js'
     },
     resolve: {
         extensions: ['.js','.vue'],

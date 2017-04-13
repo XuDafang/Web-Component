@@ -1,6 +1,6 @@
 <template>
     <div :class="{'footer-container': isFixed}">
-        <div :class="{'footer-text': true, 'text-white': isWhite} ">© 2017 Bescene</div>
+        <div :class="{'footer-text': true, 'text-white': isWhite} ">&copy {{ text }}</div>
     </div>
 </template>
 
@@ -11,7 +11,6 @@
     bottom: 0;
     left: auto;
     right: auto;
-    z-index: 100;
 }
 
 .text-white {
@@ -39,6 +38,11 @@ module.exports = {
             type: Boolean,
             required: false,
             default: false
+        }
+    },
+    data: function(){
+        return {
+            text:' 2017 Bescene '
         }
     }
 }
