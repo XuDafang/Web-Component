@@ -7,33 +7,39 @@
                     <div class="signup-sub-text margin-top-1em">Host your events with BeScene, the easiest event management platform with social discovery</div>
                 </div>
                 <div class="six wide column signup-right-align-center">
-                    <form action="#" class="ui form signup-form-container">
+                    <form action="#" class="ui form signup-form-container mini" @submit.prevent="signup">
                         <div class="signup-form-title-container">
                             <div class="signup-form-title">
-                                Organiser Sign Up
+                                Organizer Sign Up
                             </div>
                         </div>
                         <div class="be-divider">
                         </div>
-                        <be-input :source="source.name" v-model="user.name"></be-input>
+                        <be-input :source="source.name" v-model="organizer.name"></be-input>
                         <div class="be-divider">
                         </div>
-                        <be-input :source="source.email" v-model="user.email"></be-input>
+                        <be-input :source="source.email" v-model="organizer.email"></be-input>
                         <div class="be-divider">
                         </div>
-                        <be-input :source="source.company" v-model="user.company"></be-input>
+                        <be-input :source="source.company" v-model="organizer.company"></be-input>
                         <div class="be-divider">
                         </div>
-                        <be-input :source="source.contact" v-model="user.contact"></be-input>
+                        <be-input :source="source.contact_number" v-model="organizer.contact_number"></be-input>
+                        <div class="be-divider">
+                        </div>
+                        <be-input :source="source.password" type="password" v-model="organizer.password"></be-input>
+                        <div class="be-divider">
+                        </div>
+                        <be-input :source="source.password_confirm" type="password" v-model="password_confirm"></be-input>
                         <div class="be-divider">
                         </div>
                         <div class="be-button-container">
-                            <button class="ui button fluid be-theme-bg-color be-text-white">
+                            <button class="ui button fluid be-theme-bg-color be-text-white" :class="{'loading': isLoading}">
                                 Sign up
                             </button>
                         </div>
                         <div class="be-text-container">
-                            <span class="be-text-small">Already a BeScene Organiser?<a href="#" class="be-theme-color">  Login here</a> </span>
+                            <span class="be-text-small">Already a BeScene Organiser? <router-link class="be-theme-color" :to="{name: 'login'}"> Login here</router-link></span>
                         </div>
                         <div class="signup-buttom">
                             <div class="be-text-container">
@@ -43,6 +49,9 @@
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="ui container">
+            <be-footer :isFixed="true" :isWhite="true"></be-footer> 
         </div>
     </div>
 </template>
@@ -84,12 +93,12 @@
 }
 
 .signup-right-align-center {
-    padding-top: calc((100vh - 649px)/2);
+    padding-top: calc((100vh - 720px)/2);
 }
 
 .signup-form-container {
     width: 400px;
-	height: 649px;
+	height: 720px;
 	background-color: #ffffff;
 	box-shadow: 0 5px 10px 0 rgba(125, 125, 125, 0.4);
 }
@@ -112,11 +121,17 @@
 </style>
 
 <script>
+import api from 'api'
+import util from 'util'
+import { mapActions } from 'vuex'
+
 import Binput from './components/Binput.vue'
+import Bfooter from './components/Bfooter.vue'
 
 module.exports = {
     components: {
-        'be-input': Binput
+        'be-input': Binput,
+        'be-footer': Bfooter
     },
     data: function(){
         return {
@@ -130,7 +145,7 @@ module.exports = {
                 "email": {
                     input: '',
                     holderName: 'Johndoe@email.com',
-                    labelName: 'Email address',
+                    labelName: 'Email Address',
                     icon: 'be-icon-email'
                 },
                 "company": {
@@ -139,19 +154,64 @@ module.exports = {
                     labelName: 'Company',
                     icon: 'be-icon-organiser'
                 },
-                "contact": {
+                "contact_number": {
                     input: '',
                     holderName: '9123 4567',
                     labelName: 'Contact Number',
                     icon: 'be-icon-phone'
+                },
+                "password": {
+                    input: '',
+                    holderName: 'Your 5-12 character password',
+                    labelName: 'Password',
+                    icon: 'be-icon-password'
+                },
+                "password_confirm": {
+                    input: '',
+                    holderName: 'Confirm your password',
+                    labelName: 'Confirmation',
+                    icon: 'be-icon-password'
                 }
             },
-            "user": {
+            "organizer": {
                 name: '',
                 email: '',
                 company: '',
-                contact: ''
+                contact_number: '',
+                password: '',
+            },
+            password_confirm: '',
+            isLoading: false
+        }
+    },
+    methods: {
+        ...mapActions(['setOrganizerInfo']),
+        signup(){
+            for(let attr in this.organizer){
+                if(!this.organizer[attr]){
+                    util.toggleAlert('Informations is incomplete','error');
+                    return;
+                }
             }
+            if(this.organizer.password !== this.password_confirm){
+                util.toggleAlert('Password and Confirmation do not match','error');
+                return;
+            }
+            this.isLoading = true;
+            api.Signup({"organizer": this.organizer}).then(res => {
+                if(res.organizer){
+                    util.toggleAlert('Signin success', 'success');
+                    this.isLoading = false;
+                    let organizer = res.organizer;
+                    util.storeWithExpiration.set('organizer', organizer , 1200000);
+                    this.setOrganizerInfo(organizer);
+                    this.$router.push({path: 'profile'});
+                    // need to save organizer to store
+                }
+            }).catch(error => {
+                util.toggleAlert(error, 'error');
+                this.isLoading = false;
+            })
         }
     }
 }  

@@ -3,10 +3,7 @@
         <Bheader></Bheader>
         <router-view></router-view>
         <p class="test-link">
-            <router-link to="/login">Login</router-link>
             <router-link to="/logout">Logout</router-link>
-            <router-link to="/signup">Signup</router-link>
-            <router-link to="/profile">Profile</router-link>
         </p>
     </div>
 </template>
@@ -33,6 +30,12 @@ import { mapActions, mapState } from 'vuex'
 module.exports = {
     components: {
         Bheader
-    }
+    },
+    methods: {
+        ...mapActions(['loadOrganizerInfo'])
+    },
+    // mounted(){
+    //     this.loadOrganizerInfo();
+    // }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="user.userInfo.id">
+    <div v-if="organizer.organizerInfo.id">
         <div class="header-height ui attached stackable menu inverted">
             <div class="ui container">
                 <a class="item">
@@ -11,7 +11,7 @@
                 </a>
                 <div class="item ui simple dropdown">
                     <img class="ui avatar image circular" src=""/>
-                    <span class="header-text">{{ username }}</span>
+                    <span class="header-text">{{ organizer.organizerInfo.name }}</span>
                     <i class="dropdown icon header-color"></i>
                     <div class="menu">
                         <a class="item">miruku</a>
@@ -73,34 +73,20 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 module.exports = {
-    props: {
-        isLogin: {
-            type: Boolean,
-            default: true
-        },
-        username: {
-            type: String,
-            default: 'miruku',
-            required: true
-        }
-    },
     data(){
         return {
-            ok: true,        
+            ok: true,    
         }
     },
     methods: {
         ...mapActions([
-            'loadUserInfo'
+            'loadOrganizerInfo'
         ])
     },
     computed: {
         ...mapState([
-            'user'
+            'organizer'
         ])
-    },
-    created(){
-        this.loadUserInfo();
     }
 }
 </script>

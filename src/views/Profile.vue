@@ -1,8 +1,8 @@
 <template>
     <div class="be-page-container ui container">
         <div class="be-title-container be-flex-between ui">
-            <div class="margin-left-half-em profile-text-title">Organiser Profile</div>
-            <button class="ui button be-button">
+            <div class="margin-left-half-em profile-text-title">Organizer Profile</div>
+            <button class="ui button be-button" @click.prevent="update()">
                 Save
             </button>
         </div>
@@ -32,14 +32,9 @@
                 <div>
                     <my-upload field="logo"
                         @crop-success="cropSuccess"
-                        @crop-upload-success="cropUploadSuccess"
-                        @crop-upload-fail="cropUploadFail"
                         v-model="logo.show"
                         :width="360"
                         :height="360"
-                        url="/upload"
-                        :params="logo.params"
-                        :headers="logo.headers"
                         lang-type="en"
                         img-format="png">
                     </my-upload>
@@ -67,20 +62,15 @@
                 <div>
                     <my-upload field="cover"
                         @crop-success="cropSuccess"
-                        @crop-upload-success="cropUploadSuccess"
-                        @crop-upload-fail="cropUploadFail"
                         v-model="cover.show"
                         :width="2160"
                         :height="1080"
-                        url="/upload"
-                        :params="cover.params"
-                        :headers="cover.headers"
                         lang-type="en"
                         img-format="png">
                     </my-upload>
                 </div>
                 <div class="profile-cover-preview">
-                    <div v-if="cover.isUpload" class="profile-cover-container">
+                    <div v-if="cover.imgDataUrl" class="profile-cover-container">
                         <img class="ui image" :src="cover.imgDataUrl" />
                     </div>
                     <div v-else class="profile-cover-container be-flex be-flex-direction-column be-flex-align-center be-flex-center">
@@ -98,22 +88,22 @@
         </div>
         <div class="ui form margin-bottom-5em">
             <div class="be-column-container">
-                <be-input :source="source.organiser" v-model="user.organiser"></be-input>
+                <be-input :source="source.name" v-model="organizer.name"></be-input>
             </div>
             <div class="be-divider">
             </div>
             <div class="be-column-container">
-                <be-input :source="source.about" :isTextarea="source.about.isTextarea" v-model="user.about"></be-input>
+                <be-input :source="source.description" :isTextarea="source.description.isTextarea" v-model="organizer.description"></be-input>
             </div>
             <div class="be-divider">
             </div>
             <div class="be-column-container">
-                <be-input :source="source.website" v-model="user.website"></be-input>
+                <be-input :source="source.website" v-model="organizer.website"></be-input>
             </div>
             <div class="be-divider">
             </div>
             <div class="be-column-container">
-                <be-input :source="source.facebook" v-model="user.facebook"></be-input>
+                <be-input :source="source.facebook" v-model="organizer.facebook"></be-input>
             </div>
         </div>
         <be-footer></be-footer>
@@ -174,7 +164,11 @@ button.profile-button:hover {
 
 <script>
 
-import myUpload from 'vue-image-crop-upload/upload-2.vue'
+import api from 'api'
+import util from 'util'
+import { mapActions, mapState } from 'vuex'
+
+import myUpload from './components/Upload.vue'
 import Binput from './components/Binput.vue'
 import Bfooter from './components/Bfooter.vue'
 /* 
@@ -186,13 +180,13 @@ module.exports = {
         return {
             // input data
             source: {
-                organiser: {
+                name: {
                     input: '',
                     holderName: 'Bescene Organiser',
                     labelName: 'Organiser Name',
                     icon: 'be-icon-email'
                 },
-                about: {
+                description: {
                     input: '',
                     labelName: 'About',
                     holderName: 'Tell us what your organisation is about and the type of events it usually hosts.',
@@ -214,37 +208,29 @@ module.exports = {
             },
             // vue image upload data
             logo: {
-                isUpload: false,
                 // vue-image-crop-upload data
                 show: false,
-                params: {
-                    token: '12345678',
-                    name: 'avatar'
-                },
-                headers: {
-                    smail: '-v-'
-                },
                 imgDataUrl: ''
             },
             cover: {
-                isUpload: false,
                 // vue-image-crop-upload data
                 show: false,
-                params: {
-                    token: '12345678',
-                    name: 'avatar'
-                },
-                headers: {
-                    smail: '-v-'
-                },
                 imgDataUrl: ''
             },
-            user: {
-                organiser: '',
-                website: '',
-                facebook: ''
-            }
         }
+    },
+    computed: {
+        ...mapState(['organizer']),
+        organizer: function(){
+            return {
+                name: '',
+                website: '',
+                description: '',
+                company: '',
+                logo: this.logo.imgDataUrl,
+                cover_image: this.cover.imgDataUrl
+            }
+        }    
     },
     methods: {
         logoToggleShow() {
@@ -262,11 +248,8 @@ module.exports = {
                 this.cover.isUpload = true;
             }
         },
-        cropUploadSuccess(jsonData, field){
-            console.log(jsonData);
-        },
-        cropUploadFail(status, field){
-            console.log(status);
+        update(){
+            
         }
     },
     components: {

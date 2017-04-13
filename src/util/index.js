@@ -1,4 +1,5 @@
 import store from 'store'
+import swal from 'sweetalert'
 
 // get brower info 
 
@@ -43,10 +44,23 @@ var storeRemove = function(key){
     store.remove(key);
 }
 
+// message alert
+
+var toggleAlert = function(message, type) {
+    console.log(message);
+    let title = type === "error" ? "Oops" : "Good";
+    swal({
+        title: title,
+        text: message,
+        type: type || "warning"
+    });
+}
+
 
 
 export default {
     getBrowserInfo,
     storeWithExpiration,
-    storeRemove
+    storeRemove,
+    toggleAlert
 }

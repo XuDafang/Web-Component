@@ -20,7 +20,7 @@ axios.interceptors.request.use((config) => {
 });
 
 axios.interceptors.response.use((res) => {
-    if(res.status !== 200){
+    if(res.status !== 200 && res.status !== 201){
         return Promise.reject(res);
     }
     return res;
@@ -44,7 +44,13 @@ export function fetch(url, params){
 
 export default {
     Login(params){
-        return fetch('/users/signin',params);
+        return fetch('/organizers/signin', params);
+    },
+    Signup(params){
+        return fetch('/organizers', params);
+    },
+    Update(id, params){
+        return fetch('/organizers/'+ id, params);
     }
 }
 

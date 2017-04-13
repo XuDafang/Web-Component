@@ -7,15 +7,34 @@ import Logout from '../views/Logout.vue'
 import Signup from '../views/Signup.vue'
 import Profile from '../views/Profile.vue'
 
+import store from '../store'
+import util from 'util'
+
 Vue.use(Router);
 
-export default new Router({
+function isLogin(to, from, next){
+    let organizer = store.state.organizer.organizerInfo;
+    if(organizer.id){
+        next({
+            path: 'profile'
+        });
+    } else {
+        next();
+    }
+}
+
+const router = new Router({
     //linkActiveClass: 'active',
     routes: [
         {
+            path: '',
+            redirect: '/login'
+        },
+        {
             path: '/login',
             name: 'login',
-            component: Login  
+            component: Login,
+            beforeEnter: isLogin
         },{
             path: '/logout',
             name: 'logout',
@@ -23,11 +42,32 @@ export default new Router({
         },{
             path: '/signup',
             name: 'signup',
-            component: Signup
+            component: Signup,
+            beforeEnter: isLogin
         },{
             path: '/profile',
             name: 'profile',
-            component: Profile
+            component: Profile,
+            meta: {
+                auth: true
+            }
         }
     ]
 });
+
+router.beforeEach((to, from, next) => {
+    if(to.meta.auth){
+        if(store.state.organizer.organizerInfo.id){
+            next();
+        } else {
+            util.toggleAlert('Login Required','error');
+            next({
+                path: '/login'
+            })
+        }
+    } else {
+        next();
+    }
+})
+
+export default router;

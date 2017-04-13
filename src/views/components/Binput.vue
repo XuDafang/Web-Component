@@ -16,7 +16,7 @@
             </textarea>
         </div>
         <div v-else class="be-input-container">
-            <input class="be-input" type="text" maxlength="100"
+            <input class="be-input" :type="type" maxlength="100"
                 ref="input" 
                 :placeholder="source.holderName"  
                 :value="source.input" 
@@ -72,6 +72,11 @@ module.exports = {
         isTextarea: {
             type: Boolean,
             default: false,
+            required: false
+        },
+        type: {
+            type: String,
+            default: 'text',
             required: false
         }
     },

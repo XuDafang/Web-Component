@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import user from './modules/user'
+import organizer from './modules/organizer'
 // import * as actions from './actions'
 // import * as getters from './getters'
 
@@ -12,7 +12,7 @@ export default new Vuex.Store({
     // actions,
     // getters,
     modules: {
-        user
+        organizer
     },
     strict: debug
 })

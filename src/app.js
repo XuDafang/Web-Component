@@ -5,7 +5,6 @@ import store from './store'
 import 'babel-polyfill'
 import '../public/style/style.scss'
 
-
 var vm = new Vue({
     data: {
         greeting: 'miruku'

@@ -15,24 +15,24 @@
                         </div>
                         <div class="be-divider">
                         </div>
-                        <be-input :source="source.email" v-model="user.email"></be-input>
+                        <be-input :source="source.email" v-model="organizer.email"></be-input>
                         <div class="be-divider">
                         </div>
-                        <be-input :source="source.password" v-model="user.password"></be-input>
+                        <be-input :source="source.password" :type="source.password.type" v-model="organizer.password"></be-input>
                         <div class="be-divider">
                         </div>
                         <div class="be-checkbox-container">
-                            <input class="be-checkbox" type="checkbox" v-model="user.checked" name="layout" id="login-checkbox">
+                            <input class="be-checkbox" type="checkbox" v-model="organizer.checked" name="layout" id="login-checkbox">
                             <label class="be-checkbox-lable" for="login-checkbox">Remember Me</label>
                             <a class="be-text-dim be-right" href="#">Forget password?</a>
                         </div>
                         <div class="be-button-container">
-                            <button class="ui button fluid be-theme-bg-color be-text-white">
+                            <button class="ui button fluid be-theme-bg-color be-text-white" :class="{'loading': isLoading}">
                                 Login
                             </button>
                         </div>
                         <div class="be-text-container">
-                            <span class="be-text-small">Want to become a BeScene Organiser?<a href="#" class="be-theme-color"> Sign up here</a> </span>
+                            <span class="be-text-small">Want to become a BeScene Organiser?<router-link class="be-theme-color" :to="{name: 'signup'}"> Sign up here</router-link></span>
                         </div>
                         <div class="login-buttom">
                             <div class="be-text-container">
@@ -125,7 +125,7 @@ import Bfooter from './components/Bfooter'
 
 // for test
 const userInfo = {
-    "user": {
+    "organizer": {
         "email": "miruku@gmail.com",
         "password": "654321",
         "clinet": "test"
@@ -148,38 +148,52 @@ module.exports = {
                 },
                 "password": {
                     input: '',
-                    holderName: 'Your Your 5-12 character password',
+                    holderName: 'Your 5-12 character password',
                     labelName: 'Password',
-                    icon: 'be-icon-password'
+                    icon: 'be-icon-password',
+                    type: 'password'
                 }
             },
-            "user": {
+            "organizer": {
                 "email": '',
                 "password": '',
                 "client": util.getBrowserInfo() + uuid.v1()
-            }
+                //"clinet": 'default'
+            },
+            isLoading: false
         }
     },
     methods: {
-        ...mapActions(['setUserInfo']),
+        ...mapActions(['setOrganizerInfo']),
         login(){
-            if(!this.user.email || !this.user.password){
+            if(!this.organizer.email || !this.organizer.password){
                 console.log('password error');
+                util.toggleAlert('Incorrect mailbox format', 'error');
                 return;
             }
-            api.Login({"user": this.user}).then(res => {
+            this.isLoading = true;
+            api.Login({"organizer": this.organizer}).then(res => {
                 // debuger;
-                // set route and store user data to localstage
-                if(res.user){
-                    let user = res.user;
-                    util.storeWithExpiration.set('user', user, 600000); // expiration time = 10 min
-                    this.setUserInfo(user);
+                // set route and store organizer data to localstage
+                // change button style
+                if(res.organizer){
+                    util.toggleAlert('Login success', 'success');
+                    this.isLoading = false;
+                    let organizer = res.organizer;
+                    util.storeWithExpiration.set('organizer', organizer, 600000); // expiration time = 10 min
+                    this.setOrganizerInfo(organizer);
+                    // path to profile
+                    this.$router.push({path: 'profile'});
                 }
             }).catch(error => {
                 if(error.status){
+                    util.toggleAlert(error, 'error');
+                    this.isLoading = false;
                     console.log('error, code: ' + error.status ); // deal http error 
                 }
                 else{
+                    util.toggleAlert(error, 'error');
+                    this.isLoading = false
                     console.log(error);
                 }
             })            

@@ -9,11 +9,12 @@ import { mapActions } from 'vuex'
 
 module.exports = {
     mounted () {
-        util.storeRemove('user');
-        this.setUserInfo({});
+        util.storeRemove('organizer');
+        this.setOrganizerInfo({});
+        this.$router.push({path: 'login'})
     },
     methods: {
-        ...mapActions(['setUserInfo'])
+        ...mapActions(['setOrganizerInfo'])
     }
 }
 </script>
