@@ -1,6 +1,6 @@
 <template>
     <div :class="{'footer-container': isFixed}">
-        <div :class="{'footer-text': true, 'text-white': isWhite} ">&copy {{ text }}</div>
+        <div :class="{'footer-text': true, 'text-white': isWhite} ">&copy; {{ text }}</div>
     </div>
 </template>
 

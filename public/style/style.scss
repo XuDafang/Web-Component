@@ -16,6 +16,16 @@ body {
     border: 0;
 }
 
+// width 
+
+.be-width-fluid {
+    width: 100%;
+}
+
+.be-width-70 {
+    width: 70%;
+}
+
 // theme color 
 
 .be-theme-color {
@@ -78,6 +88,10 @@ body {
 .be-flex {
     display: flex;
     display: -webkit-flex;
+}
+
+.be-flex.wrap-reverse {
+    flex-wrap: wrap-reverse;
 }
 
 .be-flex-between {
@@ -187,6 +201,11 @@ body {
     justify-content: space-between;
 }
 
+.be-row-container {
+    margin: 1em;
+    display: relative;
+}
+
 .be-column-container {
     margin: 1em;
     display: relative;
@@ -213,12 +232,20 @@ body {
     margin-bottom: 1em;
 }
 
+.margin-bottom-2em {
+    margin-bottom: 2em;
+}
+
 .margin-bottom-5em {
     margin-bottom: 5em !important;
 }
 
 .margin-top-1em {
     margin-top: 1em;
+}
+
+.margin-top-2em {
+    margin-top: 2em;
 }
 
 .margin-left-1em {
@@ -229,12 +256,43 @@ body {
     margin-left: 3em;
 }
 
+.margin-left-8em {
+    margin-left: 8em;
+}
+
+.margin-right-8em {
+    margin-right: 8em;
+}
+
 .margin-left-auto {
     margin-left: auto !important;
 }
 
 .margin-right-auto {
     margin-right: auto !important;
+}
+
+.margin-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+// padding
+
+.padding-left-8em {
+    padding-left: 8em;
+}
+
+.padding-right-8em {
+    padding-right: 8em;
+}
+
+.padding-left-2em {
+    padding-left: 2em;
+}
+
+.padding-right-2em {
+    padding-right: 2em;
 }
 
 .padding-0 {

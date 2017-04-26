@@ -18,7 +18,9 @@ $besence_icons: (
     "event-image",
     "facebook-black",
     "web",
-    "compose"
+    "compose",
+    "small-events",
+    "small-location-grey"
 );
 
 @each $icon in $besence_icons {

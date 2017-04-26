@@ -73,21 +73,23 @@
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 module.exports = {
+    props: {
+        organizer: {
+            type: Object,
+            default: () => {},
+            required: false
+        }
+    },
     data(){
         return {
             ok: true,    
         }
     },
-    methods: {
-        ...mapActions([
-            'loadOrganizerInfo'
-        ])
-    },
     computed: {
         ...mapState([
             'organizer'
         ])
-    }
+    },
 }
 </script>
 

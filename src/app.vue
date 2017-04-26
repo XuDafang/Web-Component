@@ -1,9 +1,10 @@
 <template>
     <div class="wrapper">
-        <Bheader></Bheader>
+        <Bheader :organizer="organizer"></Bheader>
         <router-view></router-view>
         <p class="test-link">
             <router-link to="/logout">Logout</router-link>
+            <router-link to="/eventdetail">Eventdetail</router-link>
         </p>
     </div>
 </template>
@@ -31,11 +32,14 @@ module.exports = {
     components: {
         Bheader
     },
+    computed: {
+        ...mapState(['organizer'])
+    },
     methods: {
         ...mapActions(['loadOrganizerInfo'])
     },
-    // mounted(){
-    //     this.loadOrganizerInfo();
-    // }
+    created(){
+         //this.loadOrganizerInfo();
+    }
 }
 </script>

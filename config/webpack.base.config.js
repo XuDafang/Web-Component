@@ -20,9 +20,10 @@ console.log(STYLE_PATH);
 /* Package hot-load-module only in development */
 var entry = isdev ? [
     path.resolve(APP_PATH, 'app.js')
-] : [
-    path.resolve(APP_PATH, 'app.js'),
-];
+] : {
+    app: path.resolve(APP_PATH,'app.js'),
+    vender: ["lodash","vue"],
+};
 
 var plugins = isdev ? [
     new webpack.HotModuleReplacementPlugin(),
@@ -33,7 +34,8 @@ var plugins = isdev ? [
     }),
     new webpack.optimize.UglifyJsPlugin({
     }),
-    new ExtractTextPlugin("style-[contenthash:10].css")
+    new ExtractTextPlugin("style-[contenthash:10].css"),
+    new webpack.optimize.CommonsChunkPlugin({names: ['vendor', 'runtime']}),
 ]
 
 // define development and production in application
@@ -63,7 +65,7 @@ module.exports = {
     output: {
         path: BUILD_PATH,
         publicPath: isdev ? '/build/' : '/build/',  // output to CDN
-        filename: isdev ? 'bundle.js' : 'bundle.[hash:12].min.js'
+        filename: isdev ? 'bundle.js' : '[name].[hash:12].min.js',
     },
     resolve: {
         extensions: ['.js','.vue'],

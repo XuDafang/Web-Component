@@ -6,6 +6,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Signup from '../views/Signup.vue'
 import Profile from '../views/Profile.vue'
+import Eventdetail from '../views/Eventdetail.vue'
 
 import store from '../store'
 import util from 'util'
@@ -51,6 +52,10 @@ const router = new Router({
             meta: {
                 auth: true
             }
+        },{
+            path: '/eventdetail',
+            name: 'eventdetail',
+            component: Eventdetail,
         }
     ]
 });
